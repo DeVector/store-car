@@ -45,17 +45,19 @@ public class CarroController {
         return ResponseEntity.ok(service.findByCarType(carType));
     }
 
-    @GetMapping(value = "/years/{yearInit}&{yaerLast}")
-    public ResponseEntity<List<CarroDTO>> findByYearInitANDYearLast(@PathVariable short yearInit, short yearLast){
-        return ResponseEntity.ok(service.findByYear(yearInit, yearLast));
+    @GetMapping(value = "/years")
+    public ResponseEntity<List<CarroDTO>> findByYearInitANDYearLast(
+            @RequestParam(value = "startYear", defaultValue = "0") String startYear,
+            @RequestParam(value = "endYear", defaultValue = "0") String endYear){
+        return ResponseEntity.ok(service.findByYear(startYear, endYear));
     }
 
-    @GetMapping(value = "/prices/{startPrice}&{endPrice}")
+    @GetMapping(value = "/prices/{startPrice}&&{endPrice}")
     public ResponseEntity<List<CarroDTO>> findByPriceBetween(@PathVariable Double startPrice, Double endPrice){
         return ResponseEntity.ok(service.findByPrice(startPrice, endPrice));
     }
 
-    @GetMapping(value = "/km/{startKm}&{endKm}")
+    @GetMapping(value = "/km/{startKm}&&{endKm}")
     public ResponseEntity<List<CarroDTO>> findByKmBetween(@PathVariable Integer startKm, Integer endKm){
         return ResponseEntity.ok(service.findByKm(startKm, endKm));
     }
@@ -65,10 +67,14 @@ public class CarroController {
         return ResponseEntity.ok(service.findByFuelType(fuelType));
     }
 
-    @GetMapping(value = "/{startYear}&{endYear}/{startPrice}&{endPrice}/{startKm}&{endKm}")
-    public ResponseEntity<List<CarroDTO>> findByAllArgs(@PathVariable short startYear, short endYear,
-                                                        Double startPrice, Double endPrice,
-                                                        Integer startKm, Integer endKm){
+    @GetMapping(value = "/years/price/km")
+    public ResponseEntity<List<CarroDTO>> findByAllArgs(
+            @RequestParam(value = "startYear", defaultValue = "") String startYear,
+            @RequestParam(value = "endYear", defaultValue = "") String endYear,
+            @RequestParam(value = "startPrice", defaultValue = "") Double startPrice,
+            @RequestParam(value = "endPrice", defaultValue = "") Double endPrice,
+            @RequestParam(value = "startKm", defaultValue = "") Integer startKm,
+            @RequestParam(value = "endKm", defaultValue = "") Integer endKm){
         return ResponseEntity.ok(service.findByAllArgs(startYear, endYear, startPrice, endPrice, startKm, endKm));
     }
 

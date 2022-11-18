@@ -33,6 +33,7 @@ export function List() {
     return (
         <div>
             <HeaderSearch />
+            <Filter />
 
             <div>
 

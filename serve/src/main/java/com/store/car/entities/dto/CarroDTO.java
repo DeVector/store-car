@@ -23,7 +23,7 @@ public class CarroDTO {
 
     private Short qtDoors;
 
-    private Short yearCar;
+    private Integer yearCar;
 
     private Short numberPassengers;
 

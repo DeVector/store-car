@@ -11,6 +11,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,9 +53,21 @@ public class CarroService {
     }
 
     @Transactional
-    public List<CarroDTO> findByYear(short yearInit, short yearLast){
-        List<Carro> carros = repository.findByYearCarBetween(yearInit, yearLast);
+    public List<CarroDTO> findByYear(String yearInit, String yearLast){
+
+        Integer startYear = Integer.parseInt(yearInit);
+        Integer endYear = Integer.parseInt(yearLast);
+
+        LocalDate today = LocalDate.now();
+
+        Integer init = startYear.equals(0) ? (today.getYear() - 4) : startYear;
+        Integer end = endYear.equals(0) ? today.getYear() : endYear;
+
+        System.out.println("O init: " + init + ", e o end:" + end);
+
+        List<Carro> carros = repository.findByYearCarBetween(init, end);
         return mapper.toDtoList(carros);
+
     }
 
     @Transactional
@@ -77,7 +90,7 @@ public class CarroService {
 
     @Transactional
     public List<CarroDTO> findByAllArgs(
-            short startYear, short endYear,
+            String startYear, String endYear,
             Double startPrice, Double endPrice,
             Integer startKm, Integer endKm){
         return findByAllArguments(startYear, endYear, startPrice, endPrice, startKm, endKm);
@@ -98,7 +111,7 @@ public class CarroService {
     }
 
     private List<CarroDTO> findByAllArguments(
-            short startYear, short endYear,
+            String startYear, String endYear,
             Double startPrice, Double endPrice,
             Integer startKm, Integer endKm){
         List<CarroDTO> dtos = new ArrayList<>();

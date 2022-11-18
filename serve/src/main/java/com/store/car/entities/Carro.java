@@ -29,7 +29,7 @@ public class Carro {
 
     private Short qtDoors;
 
-    private Short yearCar;
+    private Integer yearCar;
 
     private Short numberPassengers;
 
@@ -54,7 +54,7 @@ public class Carro {
     private FuelType fuelType;
 
     public Carro(Marca marca, String name, Short qtDoors,
-                 Short yearCar, Short numberPassengers,
+                 Integer yearCar, Short numberPassengers,
                  Short trunkLiters, Short litersFuel,
                  Short endPlate, String color, Integer km,
                  String bodywork, Double price, String chassis,

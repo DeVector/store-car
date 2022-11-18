@@ -12,6 +12,7 @@ import { List } from './Pages/List/List';
 import { Describ } from './Pages/Describ/Describ';
 import { Save } from './Pages/Save/Save';
 import { Categoria } from './Pages/Categoria/Categoria';
+import { ListByYear } from './Pages/ListByYear/ListByYear';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             </Route>
           </Route>
         </Route>
+        <Route path='/carros/years/:startYear/:endYear' element={<ListByYear />} />
         <Route path='/carros/categoria/:carType' element={<Categoria />}/>
         <Route path='/save' element={<Save />} />
         

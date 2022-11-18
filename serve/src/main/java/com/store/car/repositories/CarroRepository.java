@@ -21,7 +21,7 @@ public interface CarroRepository extends CrudRepository<Carro, Long> {
 
     List<Carro> findByCarType(CarType carType);
 
-    List<Carro> findByYearCarBetween(short yearInit, short yearLast);
+    List<Carro> findByYearCarBetween(Integer yearInit, Integer yearLast);
 
     List<Carro> findByPriceBetween(Double startPrice, Double endPrice);
 
