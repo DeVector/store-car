@@ -53,12 +53,12 @@ public class CarroController {
     }
 
     @GetMapping(value = "/prices/{startPrice}&&{endPrice}")
-    public ResponseEntity<List<CarroDTO>> findByPriceBetween(@PathVariable Double startPrice, Double endPrice){
+    public ResponseEntity<List<CarroDTO>> findByPriceBetween(@PathVariable String startPrice, String endPrice){
         return ResponseEntity.ok(service.findByPrice(startPrice, endPrice));
     }
 
     @GetMapping(value = "/km/{startKm}&&{endKm}")
-    public ResponseEntity<List<CarroDTO>> findByKmBetween(@PathVariable Integer startKm, Integer endKm){
+    public ResponseEntity<List<CarroDTO>> findByKmBetween(@PathVariable String startKm, String endKm){
         return ResponseEntity.ok(service.findByKm(startKm, endKm));
     }
 
@@ -69,12 +69,12 @@ public class CarroController {
 
     @GetMapping(value = "/years/price/km")
     public ResponseEntity<List<CarroDTO>> findByAllArgs(
-            @RequestParam(value = "startYear", defaultValue = "") String startYear,
-            @RequestParam(value = "endYear", defaultValue = "") String endYear,
-            @RequestParam(value = "startPrice", defaultValue = "") Double startPrice,
-            @RequestParam(value = "endPrice", defaultValue = "") Double endPrice,
-            @RequestParam(value = "startKm", defaultValue = "") Integer startKm,
-            @RequestParam(value = "endKm", defaultValue = "") Integer endKm){
+            @RequestParam(value = "startYear", defaultValue = "0") String startYear,
+            @RequestParam(value = "endYear", defaultValue = "0") String endYear,
+            @RequestParam(value = "startPrice", defaultValue = "0") String startPrice,
+            @RequestParam(value = "endPrice", defaultValue = "500000") String endPrice,
+            @RequestParam(value = "startKm", defaultValue = "0") String startKm,
+            @RequestParam(value = "endKm", defaultValue = "50000") String endKm){
         return ResponseEntity.ok(service.findByAllArgs(startYear, endYear, startPrice, endPrice, startKm, endKm));
     }
 

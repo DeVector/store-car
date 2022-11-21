@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface CarroRepository extends CrudRepository<Carro, Long> {
 
-    /**SELECT * FROM carros WHERE Name LIKE 'go%'*/
-
     Carro findByName(String name);
 
     @Query("SELECT c FROM Carro c WHERE c.name LIKE %:name%")
@@ -28,8 +26,5 @@ public interface CarroRepository extends CrudRepository<Carro, Long> {
     List<Carro> findByKmBetween(Integer startKm, Integer endKm);
 
     List<Carro> findByFuelType(FuelType fuelType);
-
-    /*@Query("SELECT c FROM Carro c WHERE c.yearCar BETWEEN yearInit AND yearLast")
-    List<Carro> findByYearInitANDYearLast(String yearInit, String yearLast);*/
 
 }

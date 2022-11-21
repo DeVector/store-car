@@ -9,14 +9,14 @@ public class Main {
 
     public static String movie;
 
-    public static Integer password;
+    public static Double password;
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
         String login;
-        Integer pass;
+        double value;
 
         System.out.println("Entre com o seu nome:");
         name = scanner.next();
@@ -24,7 +24,7 @@ public class Main {
         System.out.println(name);
 
         System.out.println("Entre com a senha:");
-        password = Integer.parseInt(scanner.next());
+        password = Double.parseDouble(scanner.next());
 
         System.out.println(password);
 
@@ -32,9 +32,7 @@ public class Main {
         login = scanner.next();
 
         System.out.println("Entre com a password:");
-        pass = Integer.parseInt(scanner.next());
-
-        movie = login.equals(name) && pass.equals(password) ? movie = scanner.next() : "";
+        value = Double.parseDouble(scanner.next());
 
         System.out.println(movie);
     }

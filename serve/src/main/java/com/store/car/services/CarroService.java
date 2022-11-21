@@ -55,8 +55,8 @@ public class CarroService {
     @Transactional
     public List<CarroDTO> findByYear(String yearInit, String yearLast){
 
-        Integer startYear = Integer.parseInt(yearInit);
-        Integer endYear = Integer.parseInt(yearLast);
+        Integer startYear = toInt(yearInit);
+        Integer endYear = toInt(yearLast);
 
         LocalDate today = LocalDate.now();
 
@@ -71,14 +71,22 @@ public class CarroService {
     }
 
     @Transactional
-    public List<CarroDTO> findByPrice(Double startPrice, Double endPrice){
-        List<Carro> carros = repository.findByPriceBetween(startPrice, endPrice);
+    public List<CarroDTO> findByPrice(String startPrice, String endPrice){
+
+        Double init = toDoub(startPrice);
+        Double end = toDoub(endPrice);
+
+        List<Carro> carros = repository.findByPriceBetween(init, end);
         return mapper.toDtoList(carros);
     }
 
     @Transactional
-    public List<CarroDTO> findByKm(Integer startKm, Integer endKm){
-        List<Carro> carros = repository.findByKmBetween(startKm, endKm);
+    public List<CarroDTO> findByKm(String startKm, String endKm){
+
+        Integer init = toInt(startKm);
+        Integer end = toInt(endKm);
+
+        List<Carro> carros = repository.findByKmBetween(init, end);
         return mapper.toDtoList(carros);
     }
 
@@ -91,8 +99,8 @@ public class CarroService {
     @Transactional
     public List<CarroDTO> findByAllArgs(
             String startYear, String endYear,
-            Double startPrice, Double endPrice,
-            Integer startKm, Integer endKm){
+            String startPrice, String endPrice,
+            String startKm, String endKm){
         return findByAllArguments(startYear, endYear, startPrice, endPrice, startKm, endKm);
     }
 
@@ -112,8 +120,9 @@ public class CarroService {
 
     private List<CarroDTO> findByAllArguments(
             String startYear, String endYear,
-            Double startPrice, Double endPrice,
-            Integer startKm, Integer endKm){
+            String startPrice, String endPrice,
+            String startKm, String endKm){
+
         List<CarroDTO> dtos = new ArrayList<>();
 
         dtos = findByYear(startYear, endYear);
@@ -121,5 +130,13 @@ public class CarroService {
         dtos = findByKm(startKm, endKm);
 
         return dtos;
+    }
+
+    private Integer toInt(String init){
+        return Integer.parseInt(init);
+    }
+
+    private Double toDoub(String init){
+        return Double.parseDouble(init);
     }
 }
