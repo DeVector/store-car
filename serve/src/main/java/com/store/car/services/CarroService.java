@@ -129,7 +129,16 @@ public class CarroService {
         dtos = findByPrice(startPrice, endPrice);
         dtos = findByKm(startKm, endKm);
 
-        return dtos;
+        Integer initY = toInt(startYear);
+        Integer endY = toInt(endYear);
+        Integer initK = toInt(startKm);
+        Integer endK = toInt(endKm);
+        Double initP = toDoub(startPrice);
+        Double endP = toDoub(endPrice);
+
+        List<CarroDTO> carroDTOS = mapper.toDtoList(repository.findAllArgs(initY, endY, initP, endP, initK, endK));
+
+        return carroDTOS;
     }
 
     private Integer toInt(String init){

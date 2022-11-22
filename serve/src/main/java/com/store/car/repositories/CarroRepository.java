@@ -19,6 +19,7 @@ public interface CarroRepository extends CrudRepository<Carro, Long> {
 
     List<Carro> findByCarType(CarType carType);
 
+    @Query("SELECT c FROM Carro c WHERE c.yearCar BETWEEN :yearInit AND :yearLast")
     List<Carro> findByYearCarBetween(Integer yearInit, Integer yearLast);
 
     List<Carro> findByPriceBetween(Double startPrice, Double endPrice);
@@ -26,5 +27,11 @@ public interface CarroRepository extends CrudRepository<Carro, Long> {
     List<Carro> findByKmBetween(Integer startKm, Integer endKm);
 
     List<Carro> findByFuelType(FuelType fuelType);
+
+    @Query("SELECT c FROM Carro c " +
+            "WHERE c.yearCar BETWEEN :yearInit AND :yearLast " +
+            "AND c.price BETWEEN :startPrice AND :endPrice " +
+            "AND c.km BETWEEN :startKm AND :endKm")
+    List<Carro> findAllArgs(Integer yearInit, Integer yearLast, Double startPrice, Double endPrice, Integer startKm, Integer endKm);
 
 }
