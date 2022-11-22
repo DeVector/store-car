@@ -28,7 +28,7 @@ function App() {
             </Route>
           </Route>
         </Route>
-        <Route path='/carros/years/:startYear/:endYear' element={<ListByYear />} />
+        <Route path='/carros/:startYear/:endYear/:initP/:endP/:initK/:endK' element={<ListByYear />} />
         <Route path='/carros/categoria/:carType' element={<Categoria />}/>
         <Route path='/save' element={<Save />} />
         

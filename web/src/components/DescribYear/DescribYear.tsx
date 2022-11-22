@@ -6,14 +6,18 @@ import { Card } from "../Card/Card";
 type Props = {
     startYear: string;
     endYear: string;
+    initP: string;
+    endP: string;
+    initK: string;
+    endK: string;
 }
 
-export function DescribYear({ startYear, endYear }: Props) {
+export function DescribYear({ startYear, endYear, initP, endP, initK, endK }: Props) {
 
     const [cars, setCars] = useState<Carro[]>([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/carro/years?startYear=${startYear}&endYear=${endYear}`)
+        fetch(`http://localhost:8080/carro/years/price/km?startYear=${startYear}&endYear=${endYear}&startPrice=${initP}&endPrice=${endP}&startKm=${initK}&endKm=${endK}`)
             .then((res) => res.json())
             .then((json) => setCars(json));
     }, []);

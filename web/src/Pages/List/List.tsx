@@ -37,7 +37,7 @@ export function List() {
 
             <div>
 
-                <div className="w-screen flex justify-center">
+                <div className="w-screen mt-2 flex justify-center">
                     <input type="text" className='bg-icon-search bg-no-repeat bg-[#D9D9D9] w-[439px] h-8 pt-4 pb-4 pl-16 rounded-lg text-lg' value={search} onChange={(ev) => setSearch(ev.target.value)} placeholder='Digite a marca ou modelo do veiculo' />
                 </div>
 

@@ -71,10 +71,10 @@ public class CarroController {
     public ResponseEntity<List<CarroDTO>> findByAllArgs(
             @RequestParam(value = "startYear", defaultValue = "0") String startYear,
             @RequestParam(value = "endYear", defaultValue = "0") String endYear,
-            @RequestParam(value = "startPrice", defaultValue = "0") String startPrice,
-            @RequestParam(value = "endPrice", defaultValue = "500000") String endPrice,
-            @RequestParam(value = "startKm", defaultValue = "0") String startKm,
-            @RequestParam(value = "endKm", defaultValue = "50000") String endKm){
+            @RequestParam(value = "startPrice", defaultValue = "10000") String startPrice,
+            @RequestParam(value = "endPrice", defaultValue = "100000") String endPrice,
+            @RequestParam(value = "startKm", defaultValue = "100") String startKm,
+            @RequestParam(value = "endKm", defaultValue = "70000") String endKm){
         return ResponseEntity.ok(service.findByAllArgs(startYear, endYear, startPrice, endPrice, startKm, endKm));
     }
 
